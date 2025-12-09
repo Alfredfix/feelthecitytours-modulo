@@ -1,0 +1,13 @@
+{
+    "name": "TemaClasico",
+    "version": "1.0.0",
+    "description": "Tema personalizado",
+    "assets": {
+        "css": [
+            "theme.css"
+        ],
+        "js": [
+            "theme.js"
+        ]
+    }
+}

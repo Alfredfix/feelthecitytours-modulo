@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Walker Tours - Reserva tu Tour</title>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-dorado: #be8806;
+            --color-navy: #0a1e3d;
+            --color-gris: #f5f5f5;
+            --color-blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Quattrocento', serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--color-blanco);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'El Messiri', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-navy);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--color-navy);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--color-dorado);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--color-navy) 0%, #1a3a5c 100%);
+            color: var(--color-blanco);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'El Messiri', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-dorado);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* BANNER SEPARADOR */
+        .banner-separador {
+            background: var(--color-dorado);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .banner-separador h2 {
+            font-family: 'El Messiri', serif;
+            font-size: 32px;
+            color: var(--color-blanco);
+            font-weight: 700;
+        }
+
+        /* FORMULARIO DE RESERVA */
+        .reserva-section {
+            background: var(--color-gris);
+            padding: 60px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .form-group {
+            background: var(--color-blanco);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .form-group h3 {
+            font-family: 'El Messiri', serif;
+            color: var(--color-navy);
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 3px solid var(--color-dorado);
+            padding-bottom: 10px;
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+
+        .input-field label {
+            display: block;
+            color: var(--color-navy);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .input-field input,
+        .input-field select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: 'Quattrocento', serif;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            outline: none;
+            border-color: var(--color-dorado);
+        }
+
+        /* SELECTOR DE PERSONAS */
+        .persona-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .persona-info {
+            flex: 1;
+        }
+
+        .persona-info p {
+            font-weight: 600;
+            color: var(--color-navy);
+        }
+
+        .persona-info span {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .persona-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-counter {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid var(--color-dorado);
+            background: var(--color-blanco);
+            color: var(--color-dorado);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .btn-counter:hover {
+            background: var(--color-dorado);
+            color: var(--color-blanco);
+        }
+
+        .persona-input {
+            width: 60px;
+            text-align: center;
+            border: 2px solid #ddd;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .precio-display {
+            color: var(--color-dorado);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* TOTAL */
+        .total-section {
+            background: var(--color-navy);
+            color: var(--color-blanco);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .total-section h3 {
+            font-family: 'El Messiri', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .total-precio {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-dorado);
+        }
+
+        /* BOTONES */
+        .btn-primary {
+            background: var(--color-dorado);
+            color: var(--color-blanco);
+            padding: 18px 45px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: 'El Messiri', serif;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: #9a6d05;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(190, 136, 6, 0.4);
+        }
+
+        /* TOURS DESTACADOS */
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .tour-card {
+            background: var(--color-blanco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tour-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, var(--color-navy), var(--color-dorado));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-blanco);
+            font-size: 48px;
+        }
+
+        .tour-content {
+            padding: 25px;
+        }
+
+        .tour-content h3 {
+            font-family: 'El Messiri', serif;
+            color: var(--color-navy);
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .tour-precio {
+            color: var(--color-dorado);
+            font-size: 24px;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .tour-info {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* RADIO BUTTONS PERSONALIZADOS */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-option label {
+            cursor: pointer;
+            padding: 12px 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            background: #fff8e6;
+            border-color: var(--color-dorado);
+            font-weight: 600;
+        }
+
+        /* CHECKBOX */
+        .checkbox-group {
+            margin: 20px 0;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .checkbox-option label {
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--color-navy);
+            color: var(--color-blanco);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">The Walker Tours</div>
+                <nav>
+                    <ul>
+                        <li><a href="#tours">Tours</a></li>
+                        <li><a href="#reserva">Reservar</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <h1>Descubre Tours Inolvidables</h1>
+            <p>Experiencias únicas con guías expertos</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Tours Disponibles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10k+</div>
+                    <div class="stat-label">Clientes Satisfechos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Valoración Media</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOURS DESTACADOS -->
+    <section id="tours" style="padding: 60px 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-family: 'El Messiri', serif; font-size: 36px; color: var(--color-navy); margin-bottom: 20px;">Tours Destacados</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Selecciona tu experiencia ideal</p>
+
+            <div class="tours-grid">
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Tour Clásico de la Ciudad</h3>
+                        <div class="tour-info">
+                            <i class="far fa-clock"></i> 3 horas | <i class="fas fa-users"></i> Grupos pequeños
+                        </div>
+                        <div class="tour-precio">Desde €29.99</div>
+                        <p style="font-size: 14px; color: #666;">Descubre los monumentos más emblemáticos con guía experto</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Tour Gastronómico</h3>
+                        <div class="tour-info">
+                            <i class="far fa-clock"></i> 4 horas | <i class="fas fa-users"></i> Máx. 12 personas
+                        </div>
+                        <div class="tour-precio">Desde €44.50</div>
+                        <p style="font-size: 14px; color: #666;">Saborea la cultura local con degustaciones incluidas</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Tour Fotográfico</h3>
+                        <div class="tour-info">
+                            <i class="far fa-clock"></i> 2.5 horas | <i class="fas fa-users"></i> Privado
+                        </div>
+                        <div class="tour-precio">Desde €41.90</div>
+                        <p style="font-size: 14px; color: #666;">Captura los mejores rincones con fotógrafo profesional</p>
+                    </div>
+                </div>
+
+                <div class="tour-card">
+                    <div class="tour-image">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Tour Nocturno</h3>
+                        <div class="tour-info">
+                            <i class="far fa-clock"></i> 2 horas | <i class="fas fa-users"></i> Todos los públicos
+                        </div>
+                        <div class="tour-precio">Desde €35.00</div>
+                        <p style="font-size: 14px; color: #666;">Experimenta la magia de la ciudad iluminada</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER SEPARADOR -->
+    <div class="banner-separador">
+        <h2>Reserva tu Tour Ahora</h2>
+    </div>
+
+    <!-- SECCIÓN DE RESERVA -->
+    <section id="reserva" class="reserva-section">
+        <div class="container">
+            <form id="formReserva" method="post" action="/pagar">
+                <div class="form-grid">
+                    <!-- COLUMNA IZQUIERDA: SELECCIÓN -->
+                    <div>
+                        <div class="form-group">
+                            <h3><i class="far fa-calendar-alt"></i> Fecha de la Visita</h3>
+                            <div class="input-field">
+                                <label>Selecciona una fecha:</label>
+                                <input type="date" name="fecha" id="fecha" required
+                                       min="<?php echo date('Y-m-d'); ?>"
+                                       value="<?php echo date('Y-m-d'); ?>">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><i class="fas fa-route"></i> Selecciona tu Tour</h3>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="tour" id="tour1" value="tour_clasico" checked>
+                                    <label for="tour1">
+                                        <strong>Tour Clásico</strong> - €29.99
+                                        <br><small>Duración: 3 horas</small>
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="tour" id="tour2" value="tour_gastronomico">
+                                    <label for="tour2">
+                                        <strong>Tour Gastronómico</strong> - €44.50
+                                        <br><small>Duración: 4 horas</small>
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="tour" id="tour3" value="tour_fotografico">
+                                    <label for="tour3">
+                                        <strong>Tour Fotográfico</strong> - €41.90
+                                        <br><small>Duración: 2.5 horas</small>
+                                    </label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="tour" id="tour4" value="tour_nocturno">
+                                    <label for="tour4">
+                                        <strong>Tour Nocturno</strong> - €35.00
+                                        <br><small>Duración: 2 horas</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><i class="fas fa-clock"></i> Horario</h3>
+                            <div class="input-field">
+                                <label>Selecciona el horario:</label>
+                                <select name="horario" id="horario" required>
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="09:00">09:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="14:00">14:00 PM</option>
+                                    <option value="16:00">16:00 PM</option>
+                                    <option value="18:00">18:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><i class="fas fa-language"></i> Idioma del Tour</h3>
+                            <div class="input-field">
+                                <label>Selecciona el idioma:</label>
+                                <select name="idioma" id="idioma" required>
+                                    <option value="es">Español</option>
+                                    <option value="en">English</option>
+                                    <option value="fr">Français</option>
+                                    <option value="de">Deutsch</option>
+                                    <option value="it">Italiano</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><i class="fas fa-users"></i> Número de Personas</h3>
+
+                            <div class="persona-selector">
+                                <div class="persona-info">
+                                    <p>Adultos</p>
+                                    <span>Mayores de 12 años</span>
+                                </div>
+                                <div class="persona-controls">
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('adultos', -1)">−</button>
+                                    <input type="number" class="persona-input" id="adultos" name="adultos" value="2" min="0" max="20" readonly>
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('adultos', 1)">+</button>
+                                    <span class="precio-display" id="precio_adultos">€0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="persona-selector">
+                                <div class="persona-info">
+                                    <p>Niños</p>
+                                    <span>De 3 a 12 años</span>
+                                </div>
+                                <div class="persona-controls">
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('ninos', -1)">−</button>
+                                    <input type="number" class="persona-input" id="ninos" name="ninos" value="0" min="0" max="20" readonly>
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('ninos', 1)">+</button>
+                                    <span class="precio-display" id="precio_ninos">€0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="persona-selector">
+                                <div class="persona-info">
+                                    <p>Bebés</p>
+                                    <span>Menores de 3 años - Gratis</span>
+                                </div>
+                                <div class="persona-controls">
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('bebes', -1)">−</button>
+                                    <input type="number" class="persona-input" id="bebes" name="bebes" value="0" min="0" max="10" readonly>
+                                    <button type="button" class="btn-counter" onclick="cambiarCantidad('bebes', 1)">+</button>
+                                    <span class="precio-display">€0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLUMNA DERECHA: DATOS PERSONALES -->
+                    <div>
+                        <div class="form-group">
+                            <h3><i class="fas fa-user"></i> Datos Personales</h3>
+
+                            <div class="input-field">
+                                <label>Nombre completo *</label>
+                                <input type="text" name="nombre" id="nombre" required placeholder="Juan García">
+                            </div>
+
+                            <div class="input-field">
+                                <label>Email *</label>
+                                <input type="email" name="email" id="email" required placeholder="tu@email.com">
+                            </div>
+
+                            <div class="input-field">
+                                <label>Teléfono *</label>
+                                <input type="tel" name="telefono" id="telefono" required placeholder="+34 600 000 000">
+                            </div>
+
+                            <div class="input-field">
+                                <label>País</label>
+                                <select name="pais" id="pais">
+                                    <option value="ES">España</option>
+                                    <option value="FR">Francia</option>
+                                    <option value="IT">Italia</option>
+                                    <option value="DE">Alemania</option>
+                                    <option value="UK">Reino Unido</option>
+                                    <option value="US">Estados Unidos</option>
+                                    <option value="MX">México</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="CO">Colombia</option>
+                                    <option value="CL">Chile</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Comentarios adicionales</label>
+                                <textarea name="comentarios" id="comentarios" rows="4" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-family: 'Quattrocento', serif;" placeholder="¿Alguna necesidad especial o solicitud?"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3><i class="fas fa-file-contract"></i> Términos y Condiciones</h3>
+                            <div class="checkbox-group">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="terminos" id="terminos" required>
+                                    <label for="terminos">
+                                        Acepto los <a href="#" style="color: var(--color-dorado); text-decoration: underline;">términos y condiciones</a> y la <a href="#" style="color: var(--color-dorado); text-decoration: underline;">política de privacidad</a> *
+                                    </label>
+                                </div>
+                                <div class="checkbox-option">
+                                    <input type="checkbox" name="newsletter" id="newsletter">
+                                    <label for="newsletter">
+                                        Deseo recibir ofertas y novedades por email
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="total-section">
+                            <h3>Total a Pagar</h3>
+                            <div class="total-precio" id="precioTotal">€59.98</div>
+                            <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">IVA incluido</p>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-lock"></i> Proceder al Pago Seguro
+                        </button>
+
+                        <p style="text-align: center; font-size: 12px; color: #666; margin-top: 15px;">
+                            <i class="fas fa-shield-alt"></i> Pago 100% seguro con encriptación SSL
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 The Walker Tours. Todos los derechos reservados.</p>
+            <p style="margin-top: 10px; font-size: 14px;">
+                <a href="#" style="color: var(--color-dorado); text-decoration: none; margin: 0 15px;">Política de Privacidad</a> |
+                <a href="#" style="color: var(--color-dorado); text-decoration: none; margin: 0 15px;">Términos de Servicio</a> |
+                <a href="#" style="color: var(--color-dorado); text-decoration: none; margin: 0 15px;">Contacto</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Precios por tipo de tour y persona
+        const precios = {
+            tour_clasico: { adulto: 29.99, nino: 15.00 },
+            tour_gastronomico: { adulto: 44.50, nino: 22.00 },
+            tour_fotografico: { adulto: 41.90, nino: 21.00 },
+            tour_nocturno: { adulto: 35.00, nino: 17.50 }
+        };
+
+        function cambiarCantidad(tipo, cambio) {
+            const input = document.getElementById(tipo);
+            let valor = parseInt(input.value) || 0;
+            valor = Math.max(0, Math.min(parseInt(input.max), valor + cambio));
+            input.value = valor;
+            calcularTotal();
+        }
+
+        function calcularTotal() {
+            const tourSeleccionado = document.querySelector('input[name="tour"]:checked').value;
+            const adultos = parseInt(document.getElementById('adultos').value) || 0;
+            const ninos = parseInt(document.getElementById('ninos').value) || 0;
+
+            const precioAdulto = precios[tourSeleccionado].adulto;
+            const precioNino = precios[tourSeleccionado].nino;
+
+            const subtotalAdultos = adultos * precioAdulto;
+            const subtotalNinos = ninos * precioNino;
+            const total = subtotalAdultos + subtotalNinos;
+
+            document.getElementById('precio_adultos').textContent = '€' + subtotalAdultos.toFixed(2);
+            document.getElementById('precio_ninos').textContent = '€' + subtotalNinos.toFixed(2);
+            document.getElementById('precioTotal').textContent = '€' + total.toFixed(2);
+        }
+
+        // Event listeners
+        document.querySelectorAll('input[name="tour"]').forEach(radio => {
+            radio.addEventListener('change', calcularTotal);
+        });
+
+        // Calcular al cargar la página
+        calcularTotal();
+
+        // Validación del formulario
+        document.getElementById('formReserva').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const adultos = parseInt(document.getElementById('adultos').value) || 0;
+            const ninos = parseInt(document.getElementById('ninos').value) || 0;
+
+            if (adultos === 0 && ninos === 0) {
+                alert('Por favor, selecciona al menos un adulto o niño para continuar.');
+                return false;
+            }
+
+            const terminos = document.getElementById('terminos');
+            if (!terminos.checked) {
+                alert('Debes aceptar los términos y condiciones para continuar.');
+                return false;
+            }
+
+            alert('¡Reserva enviada correctamente! Redirigiendo al pago...');
+            // Aquí iría la lógica de envío real
+            // this.submit();
+        });
+    </script>
+</body>
+</html>
