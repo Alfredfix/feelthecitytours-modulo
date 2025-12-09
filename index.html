@@ -28,7 +28,7 @@
 
         /* HEADER */
         header {
-            background: var(--color-navy);
+            background: #000000;
             padding: 20px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             position: sticky;
@@ -65,11 +65,16 @@
             color: var(--color-blanco);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         nav a:hover {
             color: var(--color-dorado);
+            border-color: var(--color-dorado);
         }
 
         /* HERO SECTION */
