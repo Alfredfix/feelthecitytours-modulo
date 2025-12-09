@@ -77,6 +77,71 @@
             border-color: var(--color-dorado);
         }
 
+        /* LANGUAGE SELECTOR */
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            color: var(--color-blanco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            display: inline-block;
+            cursor: pointer;
+            background: transparent;
+            font-size: 16px;
+            font-family: 'Quattrocento', serif;
+        }
+
+        .language-btn:hover {
+            color: var(--color-dorado);
+            border-color: var(--color-dorado);
+        }
+
+        .language-btn i {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #000000;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            z-index: 1000;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid var(--color-dorado);
+        }
+
+        .language-dropdown a {
+            color: var(--color-blanco);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 0;
+        }
+
+        .language-dropdown a:hover {
+            background-color: var(--color-dorado);
+            color: #000000;
+            border: none;
+        }
+
+        .language-selector:hover .language-dropdown {
+            display: block;
+        }
+
         /* HERO SECTION */
         .hero {
             background: linear-gradient(rgba(10, 30, 61, 0.3), rgba(10, 30, 61, 0.3)), url('Orsay2.png') center center / cover no-repeat;
@@ -477,6 +542,19 @@
                         <li><a href="#tours">Tours</a></li>
                         <li><a href="#reserva">Reservar</a></li>
                         <li><a href="#contacto">Contacto</a></li>
+                        <li class="language-selector">
+                            <button class="language-btn">
+                                <i class="fas fa-globe"></i> Español <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="language-dropdown">
+                                <a href="#" data-lang="es"><i class="fas fa-flag"></i> Español</a>
+                                <a href="#" data-lang="en"><i class="fas fa-flag"></i> English</a>
+                                <a href="#" data-lang="fr"><i class="fas fa-flag"></i> Français</a>
+                                <a href="#" data-lang="de"><i class="fas fa-flag"></i> Deutsch</a>
+                                <a href="#" data-lang="it"><i class="fas fa-flag"></i> Italiano</a>
+                                <a href="#" data-lang="pt"><i class="fas fa-flag"></i> Português</a>
+                            </div>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -857,6 +935,29 @@
             alert('¡Reserva enviada correctamente! Redirigiendo al pago...');
             // Aquí iría la lógica de envío real
             // this.submit();
+        });
+
+        // Language selector
+        const languageNames = {
+            'es': 'Español',
+            'en': 'English',
+            'fr': 'Français',
+            'de': 'Deutsch',
+            'it': 'Italiano',
+            'pt': 'Português'
+        };
+
+        document.querySelectorAll('.language-dropdown a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                const langName = languageNames[lang];
+                document.querySelector('.language-btn').innerHTML =
+                    '<i class="fas fa-globe"></i> ' + langName + ' <i class="fas fa-chevron-down"></i>';
+
+                // Aquí se puede añadir lógica para cambiar el idioma de la página
+                console.log('Idioma seleccionado:', lang);
+            });
         });
     </script>
 </body>
