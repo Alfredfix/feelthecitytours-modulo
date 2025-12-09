@@ -544,15 +544,15 @@
                         <li><a href="#contacto">Contacto</a></li>
                         <li class="language-selector">
                             <button class="language-btn">
-                                <i class="fas fa-globe"></i> Español <i class="fas fa-chevron-down"></i>
+                                🇪🇸 Español <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="language-dropdown">
-                                <a href="#" data-lang="es"><i class="fas fa-flag"></i> Español</a>
-                                <a href="#" data-lang="en"><i class="fas fa-flag"></i> English</a>
-                                <a href="#" data-lang="fr"><i class="fas fa-flag"></i> Français</a>
-                                <a href="#" data-lang="de"><i class="fas fa-flag"></i> Deutsch</a>
-                                <a href="#" data-lang="it"><i class="fas fa-flag"></i> Italiano</a>
-                                <a href="#" data-lang="pt"><i class="fas fa-flag"></i> Português</a>
+                                <a href="#" data-lang="es">🇪🇸 Español</a>
+                                <a href="#" data-lang="en">🇬🇧 English</a>
+                                <a href="#" data-lang="fr">🇫🇷 Français</a>
+                                <a href="#" data-lang="de">🇩🇪 Deutsch</a>
+                                <a href="#" data-lang="it">🇮🇹 Italiano</a>
+                                <a href="#" data-lang="pt">🇵🇹 Português</a>
                             </div>
                         </li>
                     </ul>
@@ -938,22 +938,22 @@
         });
 
         // Language selector
-        const languageNames = {
-            'es': 'Español',
-            'en': 'English',
-            'fr': 'Français',
-            'de': 'Deutsch',
-            'it': 'Italiano',
-            'pt': 'Português'
+        const languages = {
+            'es': { flag: '🇪🇸', name: 'Español' },
+            'en': { flag: '🇬🇧', name: 'English' },
+            'fr': { flag: '🇫🇷', name: 'Français' },
+            'de': { flag: '🇩🇪', name: 'Deutsch' },
+            'it': { flag: '🇮🇹', name: 'Italiano' },
+            'pt': { flag: '🇵🇹', name: 'Português' }
         };
 
         document.querySelectorAll('.language-dropdown a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const lang = this.getAttribute('data-lang');
-                const langName = languageNames[lang];
+                const langData = languages[lang];
                 document.querySelector('.language-btn').innerHTML =
-                    '<i class="fas fa-globe"></i> ' + langName + ' <i class="fas fa-chevron-down"></i>';
+                    langData.flag + ' ' + langData.name + ' <i class="fas fa-chevron-down"></i>';
 
                 // Aquí se puede añadir lógica para cambiar el idioma de la página
                 console.log('Idioma seleccionado:', lang);
