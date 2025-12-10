@@ -1,0 +1,774 @@
+/* ============================================
+   FEEL THE CITY TOURS - THEME STYLESHEET
+   ============================================
+
+   Este archivo contiene todos los estilos del tema Feel the City Tours.
+   Los estilos están organizados por componentes para facilitar
+   la búsqueda y modificación.
+
+   TABLA DE CONTENIDOS:
+   1. Variables CSS
+   2. Estilos Globales
+   3. Estilos de Navegación (Header)
+   4. Selector de Idiomas
+   5. Hero Section
+   6. Banner Separador
+   7. Formulario de Reserva
+   8. Selector de Personas
+   9. Sección Total
+   10. Botones
+   11. Tours Destacados
+   12. Radio Buttons y Checkboxes
+   13. Footer
+   14. Banda Informativa
+   15. Media Queries (Responsive)
+   ============================================ */
+
+
+/* ============================================
+   1. VARIABLES CSS
+   ============================================
+
+   Estas variables definen los colores y medidas principales
+   del tema. Se pueden sobrescribir desde PHP o JavaScript
+   para personalización dinámica.
+   ============================================ */
+
+:root {
+    /* Colores principales del tema */
+    --color-dorado: #be8806;
+    --color-navy: #0a1e3d;
+    --color-gris: #f5f5f5;
+    --color-blanco: #ffffff;
+
+    /* Variables adicionales para compatibilidad */
+    --theme-primary-color: #be8806;
+    --theme-primary-rgb: 190, 136, 6;
+
+    /* Bordes */
+    --theme-border-width: 2px;
+    --theme-border-radius: 5px;
+
+    /* Espaciado */
+    --theme-spacing-sm: 5px;
+    --theme-spacing-md: 10px;
+    --theme-spacing-lg: 20px;
+}
+
+
+/* ============================================
+   2. ESTILOS GLOBALES
+   ============================================
+
+   Estilos base que afectan a toda la página.
+   Reset básico y configuración del body.
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quattrocento', serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* ============================================
+   3. ESTILOS DE NAVEGACIÓN (HEADER)
+   ============================================
+
+   Estilos para la barra de navegación superior,
+   incluyendo logo y menú de navegación.
+   ============================================ */
+
+header {
+    background: #000000;
+    padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'El Messiri', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-blanco);
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+nav a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: var(--color-dorado);
+    border-color: var(--color-dorado);
+}
+
+
+/* ============================================
+   4. SELECTOR DE IDIOMAS
+   ============================================
+
+   Estilos para el selector de idiomas del menú
+   con dropdown desplegable.
+   ============================================ */
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-btn {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Quattrocento', serif;
+}
+
+.language-btn:hover {
+    color: var(--color-dorado);
+    border-color: var(--color-dorado);
+}
+
+.language-btn i {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.language-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #000000;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    z-index: 1000;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid var(--color-dorado);
+}
+
+.language-dropdown a {
+    color: var(--color-blanco);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 0;
+}
+
+.language-dropdown a:hover {
+    background-color: var(--color-dorado);
+    color: #000000;
+    border: none;
+}
+
+.language-selector:hover .language-dropdown {
+    display: block;
+}
+
+
+/* ============================================
+   5. HERO SECTION
+   ============================================
+
+   Estilos para la sección principal con imagen
+   de fondo, título y estadísticas.
+   ============================================ */
+
+.hero {
+    background: linear-gradient(rgba(10, 30, 61, 0.3), rgba(10, 30, 61, 0.3)), url('Orsay2.png') center center / cover no-repeat;
+    color: var(--color-blanco);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+}
+
+.hero h1 {
+    font-family: 'El Messiri', serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    opacity: 1;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--color-dorado);
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+/* ============================================
+   6. BANNER SEPARADOR
+   ============================================
+
+   Estilos para las bandas separadoras con
+   fondo dorado.
+   ============================================ */
+
+.banner-separador {
+    background: var(--color-dorado);
+    padding: 30px 0;
+    text-align: center;
+}
+
+.banner-separador h2 {
+    font-family: 'El Messiri', serif;
+    font-size: 32px;
+    color: var(--color-blanco);
+    font-weight: 700;
+}
+
+
+/* ============================================
+   7. FORMULARIO DE RESERVA
+   ============================================
+
+   Estilos para el formulario de reserva,
+   incluyendo inputs, labels y grupos de campos.
+   ============================================ */
+
+.reserva-section {
+    background: var(--color-gris);
+    padding: 60px 0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.form-group {
+    background: var(--color-blanco);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.form-group h3 {
+    font-family: 'El Messiri', serif;
+    color: var(--color-navy);
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 3px solid var(--color-dorado);
+    padding-bottom: 10px;
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+.input-field label {
+    display: block;
+    color: var(--color-navy);
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-field input,
+.input-field select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    font-family: 'Quattrocento', serif;
+}
+
+.input-field input:focus,
+.input-field select:focus {
+    outline: none;
+    border-color: var(--color-dorado);
+}
+
+
+/* ============================================
+   8. SELECTOR DE PERSONAS
+   ============================================
+
+   Estilos para el selector de cantidad de personas
+   con botones +/- y display de precios.
+   ============================================ */
+
+.persona-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.persona-info {
+    flex: 1;
+}
+
+.persona-info p {
+    font-weight: 600;
+    color: var(--color-navy);
+}
+
+.persona-info span {
+    font-size: 13px;
+    color: #666;
+}
+
+.persona-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-counter {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--color-dorado);
+    background: var(--color-blanco);
+    color: var(--color-dorado);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.btn-counter:hover {
+    background: var(--color-dorado);
+    color: var(--color-blanco);
+}
+
+.persona-input {
+    width: 60px;
+    text-align: center;
+    border: 2px solid #ddd;
+    padding: 8px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.precio-display {
+    color: var(--color-dorado);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+
+/* ============================================
+   9. SECCIÓN TOTAL
+   ============================================
+
+   Estilos para la sección que muestra el total
+   a pagar de la reserva.
+   ============================================ */
+
+.total-section {
+    background: var(--color-navy);
+    color: var(--color-blanco);
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.total-section h3 {
+    font-family: 'El Messiri', serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.total-precio {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--color-dorado);
+}
+
+
+/* ============================================
+   10. BOTONES
+   ============================================
+
+   Estilos para botones primarios y secundarios,
+   incluyendo estados hover y active.
+   ============================================ */
+
+.btn-primary {
+    background: var(--color-dorado);
+    color: var(--color-blanco);
+    padding: 18px 45px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-family: 'El Messiri', serif;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background: #9a6d05;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(190, 136, 6, 0.4);
+}
+
+
+/* ============================================
+   11. TOURS DESTACADOS
+   ============================================
+
+   Estilos para las tarjetas de tours destacados
+   con imágenes, precios e información.
+   ============================================ */
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.tour-card {
+    background: var(--color-blanco);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.tour-card:hover {
+    transform: translateY(-5px);
+}
+
+.tour-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(45deg, var(--color-navy), var(--color-dorado));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blanco);
+    font-size: 48px;
+}
+
+.tour-content {
+    padding: 25px;
+}
+
+.tour-content h3 {
+    font-family: 'El Messiri', serif;
+    color: var(--color-navy);
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.tour-precio {
+    color: var(--color-dorado);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.tour-info {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+
+/* ============================================
+   12. RADIO BUTTONS Y CHECKBOXES
+   ============================================
+
+   Estilos personalizados para radio buttons,
+   checkboxes y sus labels.
+   ============================================ */
+
+/* Radio buttons personalizados */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.radio-option {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio-option label {
+    cursor: pointer;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    width: 100%;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.radio-option input[type="radio"]:checked + label {
+    background: #fff8e6;
+    border-color: var(--color-dorado);
+    font-weight: 600;
+}
+
+/* Checkboxes */
+.checkbox-group {
+    margin: 20px 0;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.checkbox-option label {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   13. FOOTER
+   ============================================
+
+   Estilos para el pie de página con información
+   de copyright y enlaces.
+   ============================================ */
+
+footer {
+    background: var(--color-navy);
+    color: var(--color-blanco);
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+
+/* ============================================
+   14. BANDA INFORMATIVA
+   ============================================
+
+   Estilos para la banda informativa con iconos
+   y descripciones de características.
+   ============================================ */
+
+.info-band {
+    background: #d9c9b0;
+    padding: 50px 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    align-items: center;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+    padding-right: 30px;
+}
+
+.info-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #333;
+}
+
+.info-icon {
+    flex-shrink: 0;
+    color: #333;
+}
+
+.info-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+.info-text h3 {
+    font-family: 'El Messiri', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.info-text p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* ============================================
+   15. MEDIA QUERIES (RESPONSIVE)
+   ============================================
+
+   Estilos responsive para diferentes tamaños
+   de pantalla: móvil, tablet y desktop.
+   ============================================ */
+
+/* Móvil (hasta 768px) */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .tours-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-right: 0;
+    }
+
+    .info-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* Tablet (769px a 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .tours-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .info-item {
+        padding-right: 0;
+    }
+
+    .info-item:not(:last-child)::after {
+        display: none;
+    }
+}
